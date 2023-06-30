@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade Placar-POOII-Graziele Reis</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Jogo de Advinhar o Resultado da Partida</h1>
+    <p>Você tem até 10 tentativas.</p>
+    <p>Resultado entre 0x0 e 10x10.</p>
+    <div id="jogo-container">
+       <h2>Brasil&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Alemanha</h2>        
+           
+      <div id="placar-inputs">
+        <label for="brasil-placar"></label>
+        <input type="number" id="brasil-placar" name="brasil-placar" min="0">
+        <p>X</p>
+        <label for="alemanha-placar"></label>
+        <input type="number" id="alemanha-placar" name="alemanha-placar" min="0">
+      </div>
+     
+      <div>
+        <button id="enviar-advinhe">Verificar</button>        
+        <button id="reiniciar-jogo">Reiniciar</button>
+      </div>
+      <div id="mensagem-container">
+        <p id="mensagem"></p>
+      </div>
+      <div id="advinhees-container">
+        <p>Palpites anteriores:</p>
+        <ul id="advinhees"></ul>
+      </div>
+    <script>
+      const brasilInput = document.getElementById("brasil-placar");
+      const alemanhaInput = document.getElementById("alemanha-placar");
+      const palpiteBtn = document.getElementById("enviar-advinhe");
+      const reiniciarBtn = document.getElementById("reiniciar-jogo");
+      const palpites = document.getElementById("advinhees");
+      const resultado = document.getElementById("mensagem");
+      let tentativas = 0;
+      let golsBrasil, golsAlemanha;
+
+      function definirResultado() {
+        golsBrasil = Math.floor(Math.random() * 6);
+        golsAlemanha = Math.floor(Math.random() * 6);
+        console.log(`Gols Brasil: ${golsBrasil}`);
+        console.log(`Gols Alemanha: ${golsAlemanha}`);
+      }
+
+      definirResultado();
+
+      function verificarPalpite() {
+        const palpiteBrasil = parseInt(brasilInput.value);
+        const palpiteAlemanha = parseInt(alemanhaInput.value);
+        if (tentativas < 10) {
+          if (palpiteBrasil === golsBrasil && palpiteAlemanha === golsAlemanha) {
+            resultado.textContent = "Você acertou. Parabéns!";
+            resultado.classList.add("mensagem-certo");
+            palpites.innerHTML += `|| ${palpiteBrasil} x ${palpiteAlemanha} || `;
+            reiniciarBtn.style.display = "block";
+          } else {
+            resultado.textContent = "Errado!!";
+            resultado.classList.add("mensagem-errado");
+            palpites.innerHTML += `||${palpiteBrasil} x ${palpiteAlemanha}|| `;
+            tentativas++;
+            document.getElementById("advinhe-numero").textContent = tentativas + 1;
+          }
+        } else {
+          resultado.textContent = "Suas tentativas acabaram!";
+          resultado.classList.add("mensagem-fim");
+          reiniciarBtn.style.display = "block";
+        }
+        brasilInput.value = "";
+        alemanhaInput.value = "";
+      }
+
+      function reiniciarJogo() {
+        tentativas = 0;
+        definirResultado();
+        resultado.textContent = "";
+        palpites.innerHTML = "";
+        reiniciarBtn.style.display = "none";
+        document.getElementById("advinhe-numero").textContent = 1;
+      }
+
+      palpiteBtn.addEventListener("click", verificarPalpite);
+      reiniciarBtn.addEventListener("click", reiniciarJogo);
+
+    </script>
+  </body>
+</html>

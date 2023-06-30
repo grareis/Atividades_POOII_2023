@@ -1,0 +1,63 @@
+@charset "UTF-8";
+body {
+    background-color: #f2f2f2;
+    font-family: 'Times New Roman', Times, serif;
+    margin: 20px;
+  }
+  
+h1, p {
+    text-align: left;   
+  }
+h2{
+  text-align: center;
+  margin-top: 0px;
+}
+
+
+#jogo-container {
+    background-color: rgba(72, 161, 202, 0.623);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);    
+    padding: 5px;
+    text-align: left;
+    width: 400px;
+  }
+  
+#placar-inputs {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    margin-left: -15px;
+    
+  }
+  
+#mensagem-container {
+    margin-bottom: 20px;
+  }
+
+#advinhees-container {
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  
+#advinhees {
+    list-style-type: "none";    
+    margin: 0;
+    padding: 0;
+  }
+    
+  
+.mensagem-certo {
+    background-color: #4caf4c;
+    color: white;
+    padding: 10px;
+  }
+  
+.mensagem-errado {background-color: #ff9800;
+  color: white;
+  padding: 10px;
+  }
+
+.mensagem-fim{
+    background-color: red;
+  }
+  
