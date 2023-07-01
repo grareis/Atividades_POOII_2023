@@ -14,20 +14,22 @@ public class TesteAgenda {
         agenda.adicionarContato(contato3);
         agenda.adicionarContato(contato4);
 
-        Contato resultadoBusca = agenda.buscarContato("Silvio");
+        String nomeBusca = "Silvio";
+        Contato resultadoBusca = agenda.buscarContato(nomeBusca);
         if (resultadoBusca != null) {
             System.out.println("Contato encontrado: " + resultadoBusca.getNome() + " (" + resultadoBusca.getEmail() + ")");
         } else {
-            System.out.println("Contato não encontrado!");
+            System.out.println("Contato \"" + nomeBusca + "\" não encontrado!");
         }
 
         agenda.excluirContato("Silvio");
 
-        resultadoBusca = agenda.buscarContato("Shakira");
+        String nomeBusca2 = "Shakira";
+        resultadoBusca = agenda.buscarContato(nomeBusca2);
         if (resultadoBusca != null) {
             System.out.println("Contato encontrado: " + resultadoBusca.getNome() + " (" + resultadoBusca.getEmail() + ")");
         } else {
-            System.out.println("Contato não encontrado!");
+            System.out.println("Contato \"" + nomeBusca2 + "\" não encontrado!");
         }
     }
 }
